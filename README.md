@@ -45,3 +45,12 @@ So, at the moment everything is treated as public inputs.
 
 This will be fixed as soon as private inputs become availble in nexus-vm.
 
+### Try it
+
+Follow the README of https://github.com/nexus-xyz/nexus-zkvm to install the dependencies.
+
+I haven't finished proving yet, but perhaps you can
+```
+cargo nexus prove
+cargo nexus verify
+```
