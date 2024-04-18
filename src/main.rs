@@ -5,10 +5,6 @@
 extern crate alloc;
 use alloc::vec::Vec;
 
-use nexus_rt::{print, println, Write};
-
-use nexus_rt::write_log;
-
 // Keccack implementation copied from
 // https://github.com/nexus-xyz/nexus-zkvm/blob/main/examples/src/bin/keccak.rs
 #[inline]
@@ -145,18 +141,21 @@ fn ethash_final(c: &mut Sha3) -> Vec<u8> {
     v
 }
 
-fn ethash(bytes: &[u8]) {
+fn etethash(bytes0: &[u8], bytes1: &[u8]) {
     let mut c = sha3_init(32);
-    sha3_update(&mut c, bytes);
-    let v = ethash_final(&mut c);
-    for b in v {
-        print!("{b:x}");
-    }
-    println!();
+    sha3_update(&mut c, bytes0);
+    sha3_update(&mut c, bytes1);
+    ethash_final(&mut c);
 }
 
 
 #[nexus_rt::main]
 fn main() {
-    write_log("Hello, World!\n");
+    let m = 1000000_u32; // to be private
+    let m_str = m.to_be_bytes(); // to be private
+    let s = b"something random"; // to be private
+    let o = 100;
+    let commitment = etethash(&m_str, s);
+    assert!(o < m);
+    assert_eq!(commitment, etethash(&m_str, s))
 }
