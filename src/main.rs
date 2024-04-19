@@ -154,7 +154,7 @@ fn main() {
     let m = 1000000_u32; // to be private
     let m_str = m.to_be_bytes(); // to be private
     let s = b"something random"; // to be private
-    let o = 100;
+    let o = 100_u32;
     let commitment = etethash(&m_str, s);
     assert!(o < m);
     assert_eq!(commitment, etethash(&m_str, s))
