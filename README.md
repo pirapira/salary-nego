@@ -41,7 +41,7 @@ and assertions
 
 https://docs.nexus.xyz/Specs/nexus-vm
 
-So, at the moment everything is treated as public inputs.
+So, at the moment everything is embedded as literals in the program.
 
 This will be fixed as soon as private inputs become availble in nexus-vm.
 
